@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Project 4: Prototyping & Evaluation - Team InnoLink</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin: -20px -20px 40px -20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .meta-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        h2 {
+            color: #667eea;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        h4 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .prototype-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .prototype-link {
+            background: white;
+            color: #f5576c;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: inline-block;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .prototype-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 560px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .task-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #43e97b;
+        }
+
+        .user-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .observations-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .findings-section {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .problem-box {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f44336;
+        }
+
+        .solution-box {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+        }
+
+        .team-credit {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+
+        .success-metrics {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .success-metrics ul {
+            list-style: none;
+        }
+
+        .success-metrics li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .success-metrics li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin: 40px -20px -20px -20px;
+            border-radius: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .video-wrapper {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Group Project 4: Prototyping & Evaluation</h1>
+            <p>Team InnoLink - QIU HCI 2024/2025</p>
+        </div>
+
+        <div class="meta-info">
+            <strong>Testing Date:</strong> June 17, 2025<br>
+            <strong>Testing Location:</strong> Qaiwan International University (QIU) Campus - HCI Lab<br>
+            <strong>Equipment Used:</strong> Desktop computers with Chrome browser, OBS screen recording software<br>
+            <strong>Tasks Tested:</strong> AI-Guided Journaling, Peer/Counselor Chat Support Access, Mood Tracking Visualization<br>
+            <strong>Participants:</strong> 3 users representing our target personas
+        </div>
+
+        <h2>Introduction</h2>
+        <p>Our usability testing evaluated the complete interaction flows of easyMind, our mental health support system designed specifically for university students. The testing focused on validating our core design principles of simplicity, personalization, and integrated support networks.</p>
+
+        <p><strong>Team Member Responsibilities:</strong></p>
+        <div class="team-credit">Testing for User 1 (Alice) - Karoz Rebaz</div>
+        <div class="team-credit">Testing for User 2 (Dr. Lopez) - Rawa Dara</div>
+        <div class="team-credit">Testing for User 3 (John) - Aland Fryad</div>
+        <div class="team-credit">Documentation - Mohammed Ahmed</div>
+        <div class="team-credit">Blog Curation - Harin Shorsh</div>
+
+        <h2>Our Prototype</h2>
+        <div class="prototype-section">
+            <h3>easyMind - Mental Health Support System</h3>
+            <p>High-fidelity interactive prototype implementing all core functionality with a clean, minimalist design following our established design principles.</p>
+            <a href="#" class="prototype-link">🔗 View Live Prototype</a>
+        </div>
+
+        <div class="meta-info">
+            <strong>Briefing Notes - Prepared by Mohammed Ahmed</strong><br><br>
+            <strong>Purpose:</strong> easyMind is a mental health support application designed specifically for university students aged 18-25. It addresses rising concerns about student anxiety, stress, and emotional fatigue by providing three core features: AI-guided journaling for emotional expression and personalized suggestions, integrated peer and counselor chat support for real-time help, and mood tracking visualization to monitor mental health patterns over time.<br><br>
+            <strong>Background:</strong> Many existing mental health apps fail to serve student needs effectively due to overwhelming interfaces, lack of personalization, and absence of integrated support systems. easyMind solves these problems through a minimalist design approach (maximum 3 taps to reach any feature), AI-powered personalized responses, and seamless connection to both peer mentors and professional counselors within the university ecosystem.
+        </div>
+
+        <h2>Testing with Users</h2>
+
+        <div class="task-section">
+            <h3>Task 1: AI-Guided Journaling</h3>
+            <p><strong>Task Instruction:</strong> "You've had a stressful day with multiple assignment deadlines. Use the app to write about your feelings and get personalized AI suggestions for managing your stress."</p>
+
+            <h4>User 1 (Alice - University Student) Testing Task 1</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/L7YEm9WGtYs" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 2 (Dr. Lopez - Campus Counselor) Testing Task 1</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/it_CBsn4J_8" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 3 (John - Peer Mentor) Testing Task 1</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/MgT1fDhLzBM" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3>Task 2: Access Peer/Counselor Chat Support</h3>
+            <p><strong>Task Instruction:</strong> "You're feeling overwhelmed and want to connect with others for support. Find and join a peer support chat, then explore options for professional counselor support."</p>
+
+            <h4>User 1 (Alice - University Student) Testing Task 2</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/d7gpfsbjlRo" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 2 (Dr. Lopez - Campus Counselor) Testing Task 2</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/cYJsjPhhJVw" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 3 (John - Peer Mentor) Testing Task 2</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/GkfVSlnKSNc" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3>Task 3: Mood Tracking Visualization</h3>
+            <p><strong>Task Instruction:</strong> "Check your weekly mood trends and log your current mood. Use the visualization to understand your emotional patterns."</p>
+
+            <h4>User 1 (Alice - University Student) Testing Task 3</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/1PGHfxrxsy4" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 2 (Dr. Lopez - Campus Counselor) Testing Task 3</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/FNwkbBoJ_MA" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h4>User 3 (John - Peer Mentor) Testing Task 3</h4>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/6CTwHR38npo" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="observations-section">
+            <h2>Observations - Prepared by Mohammed Ahmed</h2>
+
+            <h3>Task 1: AI-Guided Journaling Observations</h3>
+            <p><strong>Alice (University Student):</strong> Alice immediately identified and clicked the Journal button on the homepage, demonstrating the effectiveness of our clear visual hierarchy. She hesitated briefly before typing personal content, expressing concern about privacy. The AI response impressed her with its relevance and personalization. She particularly appreciated the practical suggestions and actually attempted the breathing exercise. Task completion time: 3 minutes.</p>
+
+            <p><strong>Dr. Lopez (Campus Counselor):</strong> Dr. Lopez approached the journaling feature from a clinical perspective, immediately evaluating the appropriateness of AI-generated mental health guidance. He appreciated the supportive tone but questioned the depth of analysis. He specifically mentioned wanting integration with counselor dashboards and student monitoring systems. Task completion time: 4 minutes.</p>
+
+            <p><strong>John (Peer Mentor):</strong> John tested the journaling feature by putting himself in his mentees' shoes, demonstrating his empathetic approach to peer support. He praised the welcoming, non-intimidating interface design. The AI's suggestion to connect with peer support aligned perfectly with his mentoring philosophy. Task completion time: 3.5 minutes.</p>
+
+            <h3>Task 2: Chat Support Access Observations</h3>
+            <p><strong>Alice (University Student):</strong> Alice immediately gravitated toward peer support chat over counselor options, finding it less intimidating. She appreciated seeing the number of active members (3) as it felt manageable rather than overwhelming. The anonymity features provided comfort and confidence. Task completion time: 2 minutes.</p>
+
+            <p><strong>Dr. Lopez (Campus Counselor):</strong> Dr. Lopez immediately focused on counselor features but found them insufficient for professional needs. He required dashboard functionality, student request queues, priority flagging for urgent cases, and appointment scheduling integration. Task completion time: 3 minutes with extensive suggestions.</p>
+
+            <p><strong>John (Peer Mentor):</strong> John explored both peer and counselor chat options to understand the complete support ecosystem. He appreciated the real-time activity indicators and different chat categories. However, he identified critical needs for group moderation tools and the ability to flag serious issues to counselors. Task completion time: 2.5 minutes.</p>
+
+            <h3>Task 3: Mood Tracking Observations</h3>
+            <p><strong>Alice (University Student):</strong> Alice found the mood chart immediately intuitive and engaging. She could correlate specific days with events. The color-coded weekly overview format resonated with her preference for visual information. She successfully logged her current mood using the emoji system but requested more granular tracking capabilities. Task completion time: 1.5 minutes.</p>
+
+            <p><strong>Dr. Lopez (Campus Counselor):</strong> Dr. Lopez evaluated the mood tracking from both student usability and professional utility perspectives. He appreciated the clear visualization and simple emoji system but immediately raised concerns about student data privacy and consent protocols. Task completion time: 2 minutes.</p>
+
+            <p><strong>John (Peer Mentor):</strong> John focused on how mood tracking could enhance his group mentoring effectiveness. He understood the individual visualization clearly but wanted aggregated group mood trends to help him plan community activities. Task completion time: 2 minutes.</p>
+        </div>
+
+        <div class="findings-section">
+            <h2>Findings - Prepared by Harin Shorsh</h2>
+
+            <h3>Usability Problems Discovered</h3>
+
+            <div class="problem-box">
+                <h4>Problem 1: Privacy Transparency Gap</h4>
+                <p><strong>Issue:</strong> Users expressed uncertainty about data sharing protocols between students, peer mentors, and counselors</p>
+                <p><strong>Evidence:</strong> All three users specifically asked about privacy during testing</p>
+                <p><strong>Severity:</strong> High - directly affects user trust and system adoption</p>
+                <div class="solution-box">
+                    <strong>Solution:</strong> Implement a comprehensive privacy dashboard with granular control settings and transparent explanations of who can access what information.
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>Problem 2: Role-Based Access Confusion</h4>
+                <p><strong>Issue:</strong> Users experienced confusion about different chat room purposes and access levels</p>
+                <p><strong>Evidence:</strong> Alice attempted to access counselor-only features while Dr. Lopez was unclear about peer chat protocols</p>
+                <p><strong>Severity:</strong> Medium - causes navigation errors and potential misuse of features</p>
+                <div class="solution-box">
+                    <strong>Solution:</strong> Implement role-based color coding, clear access level indicators with tooltips, and personalized onboarding tutorials.
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>Problem 3: Limited Mood Context</h4>
+                <p><strong>Issue:</strong> Mood logging lacks contextual information about why mood changed</p>
+                <p><strong>Evidence:</strong> All users requested the ability to add notes or tags to mood entries</p>
+                <p><strong>Severity:</strong> Medium - reduces the analytical value of mood data</p>
+                <div class="solution-box">
+                    <strong>Solution:</strong> Add optional mood context tags (academic stress, social issues, health concerns) and brief note fields for mood entries.
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>Problem 4: Missing Crisis Support</h4>
+                <p><strong>Issue:</strong> No clear pathway exists for urgent mental health situations</p>
+                <p><strong>Evidence:</strong> Dr. Lopez specifically highlighted this as a critical missing feature</p>
+                <p><strong>Severity:</strong> Critical - represents a significant safety concern</p>
+                <div class="solution-box">
+                    <strong>Solution:</strong> Implement a prominent "Need Help Now" button accessible from all screens with 24/7 crisis hotline resources.
+                </div>
+            </div>
+        </div>
+
+        <div class="success-metrics">
+            <h2>Success Metrics Achieved</h2>
+            <ul>
+                <li><strong>Task Completion:</strong> All users completed core tasks under 5 minutes with minimal guidance</li>
+                <li><strong>Navigation Intuitiveness:</strong> 100% of users found homepage navigation immediately clear and logical</li>
+                <li><strong>AI Effectiveness:</strong> All participants rated AI suggestions as "helpful" and "personalized"</li>
+                <li><strong>Visual Design:</strong> Unanimous positive feedback on calming aesthetics and reduced cognitive load</li>
+                <li><strong>Technical Stability:</strong> Zero technical issues encountered during testing sessions</li>
+                <li><strong>Core Concept Validation:</strong> All user personas confirmed the value proposition</li>
+            </ul>
+        </div>
+
+        <h2>Conclusion</h2>
+        <p>Our Project 4 prototyping and evaluation successfully validated the easyMind concept while identifying specific areas for improvement. The high-fidelity prototype demonstrated that our user-centered design approach effectively addresses the core problems identified in existing mental health applications.</p>
+
+        <p>The usability testing with representatives from all three target user groups provided valuable insights into both the strengths of our current design and the enhancements needed for successful implementation. The positive response to our core features confirms that easyMind addresses genuine user needs in the university mental health support ecosystem.</p>
+
+        <p>Moving forward, implementing the identified solutions for privacy transparency, crisis support protocols, and enhanced professional features will transform easyMind from a promising prototype into a comprehensive mental health support system ready for campus deployment.</p>
+
+        <div class="footer">
+            <h3>Team InnoLink</h3>
+            <p>Making Mental Health Support Accessible, Personal, and Connected</p>
+            <p>QIU HCI 2024/2025</p>
+        </div>
+    </div>
+</body>
+</html>
